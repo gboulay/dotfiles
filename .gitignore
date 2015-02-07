@@ -1,0 +1,11 @@
+# cask packages
+emacs.d/.cask
+
+# Auto-generated directories
+emacs.d/url
+emacs.d/auto-save-list
+
+# Backup files
+.\#*
+\#*\#
+*~
