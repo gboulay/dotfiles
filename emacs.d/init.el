@@ -86,10 +86,9 @@
 (setq org-log-done t)
 
 ;; Font configuration
-;; Only put `Hermit' font only if the font exist.
-(if (find-font (font-spec :name "Hermit"))
-        (set-face-attribute 'default nil :font "Hermit-10"))
-
+;; Only use 'Source Code Pro' if it's installed.
+(if (find-font (font-spec :name "Source Code Pro"))
+        (set-face-attribute 'default nil :font "Source Code Pro-10"))
 
 ;; Flycheck configuration
 (require 'flycheck)
