@@ -2,16 +2,10 @@
 ;;; Commentary:
 
 ;;; Code:
+
+;; Cask configuration
 (require 'cask "~/.cask/cask.el")
 (cask-initialize)
-
-;;(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-;;                         ("melpa" . "http://melpa.milkbox.net/packages/")))
-
-;;(package-initialize)
-
-;; Tiny bit faster load time
-;;(setq package-enable-at-startup nil)
 
 ;; Theme
 (require 'moe-theme)
@@ -49,28 +43,27 @@
 (require 'cc-mode)
 (setq c-default-style "linux")
 (setq-default c-basic-offset 8       ; Make all tab-spaces to 4 spaces
-                          tab-width 8)           ; Make all tabs to 4 spaces
+	      tab-width 8)           ; Make all tabs to 4 spaces
 
 ;; [C-c o] will try to find corresponding *.[ch] file.
 (add-hook 'c-mode-common-hook
-  (lambda()
-        (local-set-key  (kbd "C-c o") 'ff-find-other-file)))
+	  (lambda()
+	    (local-set-key  (kbd "C-c o") 'ff-find-other-file)))
 
 (add-hook 'c-mode-common-hook 'flyspell-prog-mode)
 
 ;; Tabs or spaces? (set `t' for tabs)
 ;; Highlight characters that are at position 81 or more
 (if t
-        (progn
-          ;; Always use `insert tabs when tab is pressed' and don't highlight tabs
-          (setq c-tab-always-indent nil) ; Modify default c-mode behaviour
-          (setq-default indent-tabs-mode t)
-          (setq whitespace-style '(face empty trailing lines-tail))
-          )
+    (progn
+      ;; Always use `insert tabs when tab is pressed' and don't highlight tabs
+      (setq c-tab-always-indent nil) ; Modify default c-mode behaviour
+      (setq-default indent-tabs-mode t)
+      (setq whitespace-style '(face empty trailing lines-tail))
+      )
   ;; Never user tabs and show all tabs
   (setq-default indent-tabs-mode nil)
-  (setq whitespace-style '(face empty trailing tabs lines-tail))
-  )
+  (setq whitespace-style '(face empty trailing tabs lines-tail)))
 
 ;; scroll four lines at a time (less "jumpy" than defaults)
 (setq mouse-wheel-scroll-amount '(4 ((shift) . 4))) ;; four lines at a time
@@ -88,11 +81,12 @@
 ;; Font configuration
 ;; Only use 'Source Code Pro' if it's installed.
 (if (find-font (font-spec :name "Source Code Pro"))
-        (set-face-attribute 'default nil :font "Source Code Pro-10"))
+    (set-face-attribute 'default nil :font "Source Code Pro-10"))
 
 ;; Flycheck configuration
-(require 'flycheck)
-(add-hook 'after-init-hook 'global-flycheck-mode)
+(add-hook 'after-init-hook #'global-flycheck-mode)
+(eval-after-load 'flycheck
+  '(add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
 
 ;; Company configuration
 (require 'company)
