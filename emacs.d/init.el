@@ -8,8 +8,7 @@
 (cask-initialize)
 
 ;; Theme
-(require 'moe-theme)
-(moe-dark)
+(load-theme 'sanityinc-tomorrow-night t)
 
 ;; Disable bars
 (menu-bar-mode -1)
@@ -94,6 +93,15 @@
 
 (global-set-key [f8] 'compile)
 (global-set-key [f9] 'recompile)
+
+;; Python config
+(require 'elpy)
+(elpy-enable)
+(elpy-use-ipython)
+
+;; Powerline config
+(require 'powerline)
+(powerline-default-theme)
 
 (provide 'init)
 ;;; init.el ends here
