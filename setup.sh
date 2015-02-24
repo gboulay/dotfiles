@@ -2,23 +2,30 @@
 
 # Install dotfiles and fonts.
 
-# Usage: setup.sh [--force]
+# Usage: setup.sh [--force|--fonts]
 #   --force    Remove dotfiles without asking.
+#   --fonts    [Re]install fonts.
 
 set -e
 
 function install_fonts() {
-    WORK_DIR=/tmp/adobefont
-    URL=https://github.com/adobe-fonts/source-code-pro/archive/1.017R.zip
+    WORK_DIR=/tmp/fonts
+    ADOBE_URL=https://github.com/adobe-fonts/source-code-pro/archive/1.017R.zip
+    HERMIT_URL=https://pcaro.es/d/otf-hermit-1.21.tar.gz
 
     # Initializing directories.
     mkdir -p ~/.fonts
-    mkdir -p $WORK_DIR
+    mkdir -p $WORK_DIR/hermit
 
-    # Getting the fonts.
-    wget $URL -O $WORK_DIR/source-code-pro.zip
+    # Getting the adobe fonts.
+    wget $ADOBE_URL -O $WORK_DIR/source-code-pro.zip
     unzip $WORK_DIR/source-code-pro.zip -d $WORK_DIR
-    cp $WORK_DIR/source-code-pro-*/OTF/*.otf ~/.fonts/
+    cp $WORK_DIR/source-code-pro-*/OTF/*.otf ~/.fonts
+
+    # Getting hermit fonts.
+    wget $HERMIT_URL -O $WORK_DIR/hermit.tar.gz
+    tar xzvf $WORK_DIR/hermit.tar.gz -C $WORK_DIR/hermit
+    cp $WORK_DIR/hermit/*.otf ~/.fonts
 
     # Updating font cache.
     fc-cache -f -v
@@ -27,7 +34,7 @@ function install_fonts() {
     rm -rf $WORK_DIR
 }
 
-if [[ ! -e ~/.fonts/SourceCodePro-Medium.otf ]]; then
+if [[ ! -e ~/.fonts ]] || [[ $1 == "--fonts" ]]; then
     install_fonts
 fi
 
@@ -39,7 +46,7 @@ for file in $DOTFILES_DIR/*; do
     file=$(basename $file)
 
     # Ignore setup.sh
-    if [[ $file == "setup.sh" ]]; then
+    if [[ $file == "setup.sh" ]] || [[ $file == "scripts" ]]; then
         continue;
     fi
 

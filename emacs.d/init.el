@@ -98,6 +98,7 @@
 (require 'elpy)
 (elpy-enable)
 (elpy-use-ipython)
+(remove-hook 'elpy-modules 'elpy-module-highlight-indentation)
 
 ;; Powerline config
 (require 'powerline)
