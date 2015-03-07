@@ -1,0 +1,18 @@
+Fonts
+=====
+
+Here are the fonts that I use. Some are more suited for laptop, other for
+desktop. Some fonts look better in console, others in emacs.
+
+Manual installation
+-------------------
+
+ttf-mscorefonts-installer
+fonts-inconsolata
+fonts-lmodern
+
+Automatic installation
+----------------------
+
+hermit
+source-code-pro

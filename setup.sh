@@ -45,8 +45,8 @@ DOTFILES_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 for file in $DOTFILES_DIR/*; do
     file=$(basename $file)
 
-    # Ignore setup.sh
-    if [[ $file == "setup.sh" ]] || [[ $file == "scripts" ]]; then
+    # Ignore setup.sh, scripts and INSTALL
+    if [[ $file == "setup.sh" ]] || [[ $file == "scripts" ]] || [[ $file == "INSTALL" ]]; then
         continue;
     fi
 

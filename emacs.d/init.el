@@ -8,7 +8,7 @@
 (cask-initialize)
 
 ;; Theme
-(load-theme 'sanityinc-tomorrow-night t)
+(load-theme 'sanityinc-tomorrow-day t)
 
 ;; Disable bars
 (menu-bar-mode -1)
@@ -78,9 +78,9 @@
 (setq org-log-done t)
 
 ;; Font configuration
-;; Only use 'Source Code Pro' if it's installed.
-(if (find-font (font-spec :name "Source Code Pro"))
-    (set-face-attribute 'default nil :font "Source Code Pro-10"))
+;; Only use the font if it's installed.
+(if (find-font (font-spec :name "Latin Modern Mono"))
+    (set-face-attribute 'default nil :font "Latin Modern Mono-12"))
 
 ;; Flycheck configuration
 (add-hook 'after-init-hook #'global-flycheck-mode)
