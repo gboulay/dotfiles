@@ -104,5 +104,9 @@
 (require 'powerline)
 (powerline-default-theme)
 
+;; magit config
+(require 'magit)
+(setq magit-last-seen-setup-instructions "1.4.0")
+
 (provide 'init)
 ;;; init.el ends here
