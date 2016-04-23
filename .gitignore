@@ -10,3 +10,4 @@ emacs.d/eshell
 .\#*
 \#*\#
 *~
+/emacs.d/network-security.data

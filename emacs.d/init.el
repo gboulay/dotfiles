@@ -3,12 +3,14 @@
 
 ;;; Code:
 
+(package-initialize)
+
 ;; Cask configuration
 (require 'cask "~/.cask/cask.el")
 (cask-initialize)
 
 ;; Theme
-(load-theme 'sanityinc-tomorrow-day t)
+(load-theme 'sanityinc-tomorrow-night t)
 
 ;; Disable bars
 (menu-bar-mode -1)
