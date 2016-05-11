@@ -11,6 +11,11 @@ ttf-mscorefonts-installer
 fonts-inconsolata
 fonts-lmodern
 
+# Installing Windows Vista fonts (Consolas)
+wget http://plasmasturm.org/code/vistafonts-installer/vistafonts-installer
+chmod +x vistafonts-installer
+./vistafonts-installer
+
 Automatic installation
 ----------------------
 
