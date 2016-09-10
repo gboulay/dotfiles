@@ -10,7 +10,7 @@ set -e
 
 function install_fonts() {
     WORK_DIR=/tmp/fonts
-    ADOBE_URL=https://github.com/adobe-fonts/source-code-pro/archive/1.017R.zip
+    ADOBE_URL=https://github.com/adobe-fonts/source-code-pro/archive/2.030R-ro/1.050R-it.zip
     HERMIT_URL=https://pcaro.es/d/otf-hermit-1.21.tar.gz
 
     # Initializing directories.
@@ -23,9 +23,9 @@ function install_fonts() {
     cp $WORK_DIR/source-code-pro-*/OTF/*.otf ~/.fonts
 
     # Getting hermit fonts.
-    wget $HERMIT_URL -O $WORK_DIR/hermit.tar.gz
-    tar xzvf $WORK_DIR/hermit.tar.gz -C $WORK_DIR/hermit
-    cp $WORK_DIR/hermit/*.otf ~/.fonts
+    # wget $HERMIT_URL -O $WORK_DIR/hermit.tar.gz
+    # tar xzvf $WORK_DIR/hermit.tar.gz -C $WORK_DIR/hermit
+    # cp $WORK_DIR/hermit/*.otf ~/.fonts
 
     # Updating font cache.
     fc-cache -f -v
