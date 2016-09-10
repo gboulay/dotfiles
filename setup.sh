@@ -38,8 +38,9 @@ if [[ ! -e ~/.fonts ]] || [[ $1 == "--fonts" ]]; then
     install_fonts
 fi
 
-# Current directory of this script.
+# Current directory and path of this script.
 DOTFILES_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+DOTFILE_PATH=$(dirname $(realpath ${BASH_SOURCE[0]}))
 
 # Creating symbolic links.
 for file in $DOTFILES_DIR/*; do
@@ -52,7 +53,8 @@ for file in $DOTFILES_DIR/*; do
 
     # If the file exist, prompt for user input.
     if [[ -e ~/.$file ]] && [[ $1 != "--force" ]]; then
-        echo -n ".$file exist, do you want to delete it? [y/N] "
+        # `l` adds a reference to an existing .bashrc
+        echo -n ".$file exist, do you want to delete it? [y/N/l] "
         read -n 1 answer
 
         [ ${#answer} -eq 1 ] && echo
@@ -60,12 +62,19 @@ for file in $DOTFILES_DIR/*; do
         if [[ $answer =~ ^([yY])$ ]]; then
             # The file may be a directory.
             rm -rf ~/.$file
+        elif [[ $file == "bashrc" ]] && [[ $answer =~ ^([lL])$ ]]; then
+            # Add load link to .bashrc
+            if ! grep -Fxq ". ${DOTFILE_PATH}/bashrc" ~/.bashrc; then
+                echo >> ~/.bashrc
+                echo ". ${DOTFILE_PATH}/bashrc" >> ~/.bashrc
+            fi
+            continue
         else
             continue
         fi
     elif [[ $1 == "--force" ]]; then
-	# The file may be a directory.
-	rm -rf ~/.$file
+        # The file may be a directory.
+        rm -rf ~/.$file
     fi
 
     # Create the symbolic link.
