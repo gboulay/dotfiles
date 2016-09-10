@@ -12,3 +12,5 @@
 (depends-on "elpy")
 (depends-on "helm")
 (depends-on "auto-complete")
+
+(depends-on "inf-ruby")
