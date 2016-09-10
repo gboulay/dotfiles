@@ -104,5 +104,7 @@
 (require 'powerline)
 (powerline-default-theme)
 
+(require 'magit)
+
 (provide 'init)
 ;;; init.el ends here
