@@ -81,13 +81,11 @@
 
 ;; Font configuration
 ;; Only use the font if it's installed.
-(if (find-font (font-spec :name "Latin Modern Mono"))
-    (set-face-attribute 'default nil :font "Latin Modern Mono-12"))
+(if (find-font (font-spec :name "Hermit"))
+    (set-face-attribute 'default nil :font "Hermit-13"))
 
 ;; Flycheck configuration
 (add-hook 'after-init-hook #'global-flycheck-mode)
-(eval-after-load 'flycheck
-  '(add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
 
 ;; Company configuration
 (require 'company)
@@ -105,10 +103,6 @@
 ;; Powerline config
 (require 'powerline)
 (powerline-default-theme)
-
-;; magit config
-(require 'magit)
-(setq magit-last-seen-setup-instructions "1.4.0")
 
 (provide 'init)
 ;;; init.el ends here
