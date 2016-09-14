@@ -23,9 +23,11 @@ function install_fonts() {
     cp $WORK_DIR/source-code-pro-*/OTF/*.otf ~/.fonts
 
     # Getting hermit fonts.
-    # wget $HERMIT_URL -O $WORK_DIR/hermit.tar.gz
-    # tar xzvf $WORK_DIR/hermit.tar.gz -C $WORK_DIR/hermit
-    # cp $WORK_DIR/hermit/*.otf ~/.fonts
+    wget $HERMIT_URL -O $WORK_DIR/hermit.tar.gz
+    tar xzvf $WORK_DIR/hermit.tar.gz -C $WORK_DIR/hermit
+    cp $WORK_DIR/hermit/*.otf ~/.fonts
+    # Deleting `Hermit-medium.otf` as it is not Monospace (bug?)
+    rm -f ~/.fonts/Hermit-medium.otf
 
     # Updating font cache.
     fc-cache -f -v
