@@ -10,6 +10,14 @@ function __ruby_ps1 {
 	 fi
 }
 
+function __hg_ps1 {
+    # Print hg branch in a similar way as __git_ps1.
+    hg_branch=$(hg branch 2> /dev/null)
+    if [[ $hg_branch ]]; then
+	echo " ($hg_branch)"
+    fi
+}
+
 # Emacs packages. I still don't understand why it isn't installed in
 # /usr/bin/...
 export PATH="$HOME/.cask/bin:$PATH"
@@ -18,7 +26,7 @@ export PATH="$HOME/.cask/bin:$PATH"
 export TERM=xterm-256color
 
 # Show git branch at the command prompt
-export PS1="\$(__ruby_ps1)\[\033[01;32m\]\u@\h\[\033[01;34m\] \w\[\033[01;33m\]\$(__git_ps1)\[\033[01;34m\] \$\[\033[00m\] "
+export PS1="\$(__ruby_ps1)\[\033[01;32m\]\u@\h\[\033[01;34m\] \w\[\033[01;33m\]\$(__git_ps1)\$(__hg_ps1)\[\033[01;34m\] \$\[\033[00m\] "
 
 export VISUAL='emacsclient -t'
 export EDITOR='$VISUAL'
