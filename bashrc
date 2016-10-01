@@ -1,13 +1,13 @@
 function __ruby_ps1 {
-	 # Check if rmv_prompt exist.
-	 [[ ! -r "$HOME/.rvm/bin/rvm-prompt" ]] && return
+    # Check if rmv_prompt exist.
+    [[ ! -r "$HOME/.rvm/bin/rvm-prompt" ]] && return
 
-	 ruby_version=$("$HOME/.rvm/bin/rvm-prompt")
-	 if [[ $ruby_version ]]; then
-	     # This is because I want a space at the end if we are using an rvm
-	     # Ruby version, but none if not. Bit weird, but it works!
-	     echo "($ruby_version) "
-	 fi
+    ruby_version=$("$HOME/.rvm/bin/rvm-prompt")
+    if [[ $ruby_version ]]; then
+	# This is because I want a space at the end if we are using an rvm
+	# Ruby version, but none if not. Bit weird, but it works!
+	echo "($ruby_version) "
+    fi
 }
 
 function __hg_ps1 {
