@@ -11,6 +11,11 @@ ttf-mscorefonts-installer
 fonts-inconsolata
 fonts-lmodern
 
+# Fix for ttf-mscorefonts-installer when problems arise
+sudo dpkg -P ttf-mscorefonts-installer
+sudo rm -rf /var/lib/update-notifier/package-data-downloads/partial/*
+sudo apt-get --purge --reinstall install ttf-mscorefonts-installer
+
 # Installing Windows Vista fonts (Consolas)
 wget http://plasmasturm.org/code/vistafonts-installer/vistafonts-installer
 bash vistafonts-installer
